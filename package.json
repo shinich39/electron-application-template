@@ -1,0 +1,81 @@
+{
+  "name": "electron-application-template",
+  "version": "1.0.0",
+  "description": "Build electron application.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:osx": "electron-builder --mac",
+    "build:mac": "electron-builder --mac",
+    "build:win32": "electron-builder --win --ia32",
+    "build:win64": "electron-builder --win --x64",
+    "app:dir": "electron-builder --dir",
+    "app:dist": "electron-builder",
+    "unlink": "rimraf .git"
+  },
+  "build": {
+    "productName": "Electron Application Template",
+    "appId": "com.electron.applicationtemplate",
+    "asar": false,
+    "protocols": {
+      "name": "Electron Application Template",
+      "schemes": [
+        "electronapplicationtemplate"
+      ]
+    },
+    "mac": {
+      "target": [
+        "default"
+      ],
+      "icon": "./resources/installer/icon.ico"
+    },
+    "dmg": {
+      "title": "Electron Application Template",
+      "icon": "./resources/installer/icon.ico"
+    },
+    "win": {
+      "target": [
+        "zip",
+        "nsis",
+        "portable"
+      ],
+      "icon": "./resources/installer/icon.ico"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "installerIcon": "./resources/installer/icon.ico"
+    },
+    "directories": {
+      "buildResources": "./resources/installer/",
+      "output": "./dist/",
+      "app": "."
+    }
+  },
+  "keywords": [
+    "electron"
+  ],
+  "author": "shinich39 <shinich39@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shinich39/electron-application-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shinich39/electron-application-template/issues"
+  },
+  "homepage": "https://github.com/shinich39/electron-application-template#readme",
+  "devDependencies": {
+    "electron": "^24.8.3",
+    "electron-builder": "^24.6.4",
+    "mkdirp": "^3.0.1",
+    "rimraf": "^5.0.1"
+  }
+}
