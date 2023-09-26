@@ -9,8 +9,7 @@
     "build:mac": "electron-builder --mac",
     "build:win32": "electron-builder --win --ia32",
     "build:win64": "electron-builder --win --x64",
-    "app:dir": "electron-builder --dir",
-    "app:dist": "electron-builder",
+    "build:linux": "electron-builder --linux",
     "unlink": "rimraf .git"
   },
   "build": {
@@ -27,11 +26,12 @@
       "target": [
         "default"
       ],
-      "icon": "./resources/installer/icon.ico"
+      "background": "./resources/installer/background_540x380.png",
+      "icon": "./resources/installer/icon_512x512.png"
     },
     "dmg": {
       "title": "Electron Application Template",
-      "icon": "./resources/installer/icon.ico"
+      "icon": "./resources/installer/icon_512x512.png"
     },
     "win": {
       "target": [
@@ -39,19 +39,20 @@
         "nsis",
         "portable"
       ],
-      "icon": "./resources/installer/icon.ico"
+      "icon": "./resources/installer/icon_256x256.png"
     },
     "linux": {
       "target": [
         "AppImage",
         "deb"
-      ]
+      ],
+      "icon": "./resources/installer/icon_256x256.png"
     },
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
-      "installerIcon": "./resources/installer/icon.ico"
+      "installerIcon": "./resources/installer/icon_256x256.png"
     },
     "directories": {
       "buildResources": "./resources/installer/",
