@@ -24,14 +24,14 @@
     },
     "mac": {
       "target": [
-        "default"
+        "zip",
+        "dmg"
       ],
-      "background": "./resources/installer/background_540x380.png",
-      "icon": "./resources/installer/icon_512x512.png"
+      "icon": "./resources/icons/512x512.png"
     },
     "dmg": {
       "title": "Electron Application Template",
-      "icon": "./resources/installer/icon_512x512.png"
+      "icon": "./resources/icons/512x512.png"
     },
     "win": {
       "target": [
@@ -39,23 +39,25 @@
         "nsis",
         "portable"
       ],
-      "icon": "./resources/installer/icon_256x256.png"
+      "requestedExecutionLevel": "requireAdministrator",
+      "icon": "./resources/icons/256x256.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "installerIcon": "./resources/icons/256x256.ico"
     },
     "linux": {
       "target": [
         "AppImage",
         "deb"
       ],
-      "icon": "./resources/installer/icon_256x256.png"
-    },
-    "nsis": {
-      "oneClick": false,
-      "allowToChangeInstallationDirectory": true,
-      "createDesktopShortcut": true,
-      "installerIcon": "./resources/installer/icon_256x256.png"
+      "icon": "./resources/icons/256x256.png"
     },
     "directories": {
-      "buildResources": "./resources/installer/",
+      "buildResources": "./resources/",
       "output": "./dist/",
       "app": "."
     }
