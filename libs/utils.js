@@ -7,7 +7,7 @@ const {
   Menu,
 } = require('electron');
 
-module.exports = {
+const utils = {
   _app: app.name,
   _pid: process.pid,
   _isMac: process.platform === 'darwin',
@@ -30,41 +30,41 @@ module.exports = {
   _crashDumpsPath: app.getPath("crashDumps"),
   
   isMac: function() {
-    return this._isMac;
+    return utils._isMac;
   },
   isWin: function() {
-    return this._isWin;
+    return utils._isWin;
   },
   isLinux: function() {
-    return this._isLinux;
+    return utils._isLinux;
   },
   getAppName: function() {
-    return this._app;
+    return utils._app;
   },
   getPath: function() {
     return {
-      documents: this._documentsPath,
-      desktop: this._desktopPath,
-      downloads: this._downloadsPath,
-      home: this._HomePath,
-      app: this._appPath,
-      user: this._userPath,
-      session: this._sessionPath,
-      temp: this._tempPath,
-      exe: this._exePath,
-      module: this._modulePath,
-      desktop: this._desktopPath,
-      documents: this._documentsPath,
-      downloads: this._downloadsPath,
-      pictures: this._picturesPath,
-      videos: this._videosPath,
-      music: this._musicPath,
-      logs: this._logsPath,
-      crashDumps: this._crashDumpsPath,
+      documents: utils._documentsPath,
+      desktop: utils._desktopPath,
+      downloads: utils._downloadsPath,
+      home: utils._HomePath,
+      app: utils._appPath,
+      user: utils._userPath,
+      session: utils._sessionPath,
+      temp: utils._tempPath,
+      exe: utils._exePath,
+      module: utils._modulePath,
+      desktop: utils._desktopPath,
+      documents: utils._documentsPath,
+      downloads: utils._downloadsPath,
+      pictures: utils._picturesPath,
+      videos: utils._videosPath,
+      music: utils._musicPath,
+      logs: utils._logsPath,
+      crashDumps: utils._crashDumpsPath,
     }
   },
   getPid: function() {
-    return this._pid;
+    return utils._pid;
   },
   getWindow: function() {
     return BrowserWindow.getFocusedWindow() || BrowserWindow.getAllWindows()[0];
@@ -109,7 +109,7 @@ module.exports = {
     }
   },
   send: function(channel, data) {
-    const win = this.getWindow();
+    const win = utils.getWindow();
     if (!win) {
       throw new Error("Window not found");
     }
@@ -122,7 +122,7 @@ module.exports = {
     ipcMain.handle(channel, listener);
   },
   setMenu: function() {
-    const menu = this._isMac ? {
+    const menu = utils._isMac ? {
       [app.name]: [
         { role: 'about' },
         { type: 'separator' },
@@ -241,3 +241,5 @@ module.exports = {
     Menu.setApplicationMenu(template);
   },
 }
+
+module.exports = utils;
