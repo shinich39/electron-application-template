@@ -8,34 +8,24 @@ const {
   isMac,
   isWin,
   isLinux,
-  getName,
   getPid,
   getPath,
   getWindow,
   setEventLimit,
   alert,
+  confirm,
   send,
   receive,
   handle,
-  getMenu,
-  getMenuTemplate,
   setMenu,
 } = require('./libs/utils');
-
-const windowLoadHandler = function() {
-  console.log("> electron window loaded");
-}
-
-const windowCloseHandler = function() {
-  console.log("> electron window closed");
-}
 
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    icon: path.join(__dirname, "assets/icons/icon.png"),
+    icon: path.join(__dirname, "resources/icons/512x512.png"),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       worldSafeExecuteJavaScript: true,
@@ -51,8 +41,13 @@ const createWindow = () => {
   // mainWindow.webContents.openDevTools();
 
   // Set event listeners.
-  mainWindow.webContents.on("did-finish-load", windowLoadHandler);
-  mainWindow.webContents.on("close", windowCloseHandler);
+  mainWindow.webContents.on("did-finish-load", function() {
+    console.log("Electron window loaded");
+  });
+
+  mainWindow.webContents.on("close", function() {
+    console.log("Electron window closed");
+  });
 }
 
 // This method will be called when Electron has finished

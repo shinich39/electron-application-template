@@ -84,6 +84,30 @@ module.exports = {
       });
     }
   },
+  confirm: async function(title, message) {
+    if (!message) {
+      const { response } = await dialog.showMessageBox({
+        type: 'info',
+        buttons: ['확인', '취소'],
+        cancelId: 1,
+        defaultId: 0,
+        title: message,
+      });
+
+      return response === 0;
+    } else {
+      const { response } = await dialog.showMessageBox({
+        type: 'info',
+        buttons: ['확인', '취소'],
+        cancelId: 1,
+        defaultId: 0,
+        title: title,
+        detail: message,
+      });
+
+      return response === 0;
+    }
+  },
   send: function(channel, data) {
     const win = this.getWindow();
     if (!win) {
@@ -97,10 +121,7 @@ module.exports = {
   handle: function(channel, listener) {
     ipcMain.handle(channel, listener);
   },
-  getMenu: function(template) {
-    return Menu.buildFromTemplate(template);
-  },
-  getMenuTemplate: function() {
+  setMenu: function() {
     const menu = this._isMac ? {
       [app.name]: [
         { role: 'about' },
@@ -207,16 +228,16 @@ module.exports = {
       ]
     };
     
-    const template = [];
+    const tmp = [];
     for (const label of Object.keys(menu)) {
-      template.push({
+      tmp.push({
         label: label,
         submenu: menu[label],
       });
     }
-    return template;
-  },
-  setMenu: function(menu) {
-    Menu.setApplicationMenu(menu);
+    
+    const template = Menu.buildFromTemplate(tmp);
+
+    Menu.setApplicationMenu(template);
   },
 }
