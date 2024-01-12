@@ -6,6 +6,8 @@ git clone https://github.com/shinich39/electron-application-template.git && cd e
 
 ### Icons
 
-- ./assets/icons/icon.icns 512 x 512 px
-- ./assets/icons/icon.ico  256 x 256 px
-- ./assets/icons/icon.png  512 x 512 px
+- ./resources/icons/128x128.ico
+- ./resources/icons/256x256.ico
+- ./resources/icons/256x256.png
+- ./resources/icons/512x512.png
+- ./resources/icons/512x512.icns
