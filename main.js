@@ -1,10 +1,7 @@
-const {
-  app,
-  BrowserWindow,
-} = require('electron');
-const path = require('path');
-const fs = require('fs');
-const {
+import { app, BrowserWindow } from "electron";
+import path from "path";
+import fs from "fs";
+import {
   isMac,
   isWin,
   isLinux,
@@ -18,16 +15,16 @@ const {
   receive,
   handle,
   setMenu,
-} = require('./libs/utils');
+} from "./libs/utils.js";
 
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    icon: path.join(__dirname, "resources/icons/512x512.png"),
+    icon: path.join(process.cwd(), "resources/icons/512x512.png"),
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      preload: path.join(process.cwd(), 'preload.js'),
       worldSafeExecuteJavaScript: true,
       contextIsolation: true, // https://www.electronjs.org/docs/latest/tutorial/security
       nodeIntegration: false,
