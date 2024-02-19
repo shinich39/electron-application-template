@@ -1,21 +1,7 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 import path from "path";
 import fs from "fs";
-import {
-  isMac,
-  isWin,
-  isLinux,
-  getPid,
-  getPath,
-  getWindow,
-  setEventLimit,
-  alert,
-  confirm,
-  send,
-  receive,
-  handle,
-  setMenu,
-} from "./libs/utils.js";
+import utils from "./libs/utils.js";
 
 const createWindow = () => {
   // Create the browser window.
@@ -40,6 +26,9 @@ const createWindow = () => {
   // Set event listeners.
   mainWindow.webContents.on("did-finish-load", function() {
     console.log("Electron window loaded");
+
+    // send message to window
+    mainWindow.webContents.send("ping", "ping");
   });
 
   mainWindow.webContents.on("close", function() {
@@ -66,10 +55,22 @@ app.whenReady().then(() => {
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
+  // if (process.platform !== 'darwin') {
+  //   app.quit();
+  // }
+
+  app.quit();
 });
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+ipcMain.on("ping", function(event, data) {
+  console.log("ipcMain.on:", data);
+  event.reply("pong", "pong");
+});
+
+ipcMain.handle("ping-pong", function(event, data) {
+  console.log("ipcMain.handle:", data);
+  return "pong";
+});
