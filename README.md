@@ -1,10 +1,14 @@
-### Installation
+## electron-application-template
+
+.
+
+## Usage
 
 ```console
 git clone https://github.com/shinich39/electron-application-template.git && cd electron-application-template && npm install && npm run unlink && npm uninstall mkdirp rimraf
 ```
 
-### Icons
+## Icons
 
 - ./resources/icons/128x128.ico
 - ./resources/icons/256x256.ico
