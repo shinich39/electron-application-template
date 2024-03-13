@@ -4,7 +4,7 @@ import fs from "node:fs";
 import { fileURLToPath } from 'node:url';
 import utils from "./libs/utils.js";
 
-// Fix ESM
+// ESM
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
